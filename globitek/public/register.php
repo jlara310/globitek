@@ -51,7 +51,6 @@
   Last Name:<br /> <input type="text" name="last_name" value="" /><br />
   E-mail:<br /> <input type="text" name="email" value="" /><br />
   User Name:<br /> <input type="text" name="username" value="" /><br />
-  Password:<br /> <input type="password" name="password" value="" /><br />
   <br />
   <input type="submit" name="submit" value="Submit" />
 </form>
