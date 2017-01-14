@@ -1,6 +1,5 @@
 <?php
   require_once('../private/initialize.php');
-  require_once('../private/functions.php');
 
   // Set default values for all variables the page needs.
 
@@ -48,28 +47,36 @@
     
 
 
-    
-  }
+    if (empty($errors)) {
+ 
     // if there were no errors, submit data to database
 
+      //Need one more variable, created_at
+      $created_at = date("Y-m-d H:i:s");
+
       // Write SQL INSERT statement
-      // $sql = "";
+      $sql = "INSERT INTO  users (";
+      $sql .= "first_name, last_name, email, username, created_at";
+      $sql .= ") VALUES (";
+      $sql .= "'${first_name}', '{$last_name}', '{$email}', '{$username}', '{$created_at}'";
+      $sql .=")";
 
       // For INSERT statments, $result is just true/false
-      // $result = db_query($db, $sql);
-      // if($result) {
-      //   db_close($db);
-
+       $result = db_query($db, $sql);
+       if($result) {
+         db_close($db);
+         echo "<p>{$result}</p>";
       //   TODO redirect user to success page
 
-      // } else {
+       } else {
       //   // The SQL INSERT statement failed.
       //   // Just show the error, not the form
-      //   echo db_error($db);
-      //   db_close($db);
-      //   exit;
-      // }
-
+         echo db_error($db);
+         db_close($db);
+         exit;
+       }
+    }
+  }
 ?>
 
 <?php $page_title = 'Register'; ?>
@@ -82,16 +89,18 @@
   <?php
     // TODO: display any form errors here
     // Hint: private/functions.php can help
-    $error_text = display_errors($errors);
-    if ($error_text != '') { echo $error_text; }
+    if (isset($errors)){
+      $error_text = display_errors($errors);
+      if ($error_text != '') { echo $error_text; }
+    }
   ?>
 
   <!-- TODO: HTML form goes here -->
   <form action="register.php" method="post">
-  First Name:<br /> <input type="text" name="first_name" value="<?php echo $first_name; ?>" /><br />
-  Last Name:<br /> <input type="text" name="last_name" value="<?php echo $last_name; ?>" /><br />
-  E-mail:<br /> <input type="text" name="email" value="<?php echo $email; ?>" /><br />
-  User Name:<br /> <input type="text" name="username" value="<?php echo $username; ?>" /><br />
+  First Name:<br /> <input type="text" name="first_name" value="<?php if (isset($first_name)) { echo $first_name; } ?>" /><br />
+  Last Name:<br /> <input type="text" name="last_name" value="<?php if (isset($last_name)) { echo $last_name; } ?>" /><br />
+  E-mail:<br /> <input type="text" name="email" value="<?php if (isset($email)) { echo $email; } ?>" /><br />
+  User Name:<br /> <input type="text" name="username" value="<?php if (isset($username)) { echo $username; } ?>" /><br />
   <br />
   <input type="submit" name="submit" value="Submit" />
 </form>
