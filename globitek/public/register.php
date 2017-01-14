@@ -54,6 +54,13 @@
       //Need one more variable, created_at
       $created_at = date("Y-m-d H:i:s");
 
+      //Sanitize variables for MYSQL
+      $first_name = db_escape($db, $first_name);
+      $last_name = db_escape($db, $last_name);
+      $email = db_escape($db, $email);
+      $username = db_escape($db, $username);
+      
+
       // Write SQL INSERT statement
       $sql = "INSERT INTO  users (";
       $sql .= "first_name, last_name, email, username, created_at";
@@ -97,10 +104,10 @@
 
   <!-- TODO: HTML form goes here -->
   <form action="register.php" method="post">
-  First Name:<br /> <input type="text" name="first_name" value="<?php if (isset($first_name)) { echo $first_name; } ?>" /><br />
-  Last Name:<br /> <input type="text" name="last_name" value="<?php if (isset($last_name)) { echo $last_name; } ?>" /><br />
-  E-mail:<br /> <input type="text" name="email" value="<?php if (isset($email)) { echo $email; } ?>" /><br />
-  User Name:<br /> <input type="text" name="username" value="<?php if (isset($username)) { echo $username; } ?>" /><br />
+  First Name:<br /> <input type="text" name="first_name" value="<?php if (isset($first_name)) { echo h($first_name); } ?>" /><br />
+  Last Name:<br /> <input type="text" name="last_name" value="<?php if (isset($last_name)) { echo h($last_name); } ?>" /><br />
+  E-mail:<br /> <input type="text" name="email" value="<?php if (isset($email)) { echo h($email); } ?>" /><br />
+  User Name:<br /> <input type="text" name="username" value="<?php if (isset($username)) { echo h($username); } ?>" /><br />
   <br />
   <input type="submit" name="submit" value="Submit" />
 </form>
