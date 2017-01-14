@@ -45,8 +45,8 @@
       $errors[] = "Please provide a valid e-mail address.";
     }
 
-    //as a test, display errors here
-    echo display_errors($errors);
+    
+
 
     
   }
@@ -82,14 +82,16 @@
   <?php
     // TODO: display any form errors here
     // Hint: private/functions.php can help
+    $error_text = display_errors($errors);
+    if ($error_text != '') { echo $error_text; }
   ?>
 
   <!-- TODO: HTML form goes here -->
   <form action="register.php" method="post">
-  First Name:<br /> <input type="text" name="first_name" value="" /><br />
-  Last Name:<br /> <input type="text" name="last_name" value="" /><br />
-  E-mail:<br /> <input type="text" name="email" value="" /><br />
-  User Name:<br /> <input type="text" name="username" value="" /><br />
+  First Name:<br /> <input type="text" name="first_name" value="<?php echo $first_name; ?>" /><br />
+  Last Name:<br /> <input type="text" name="last_name" value="<?php echo $last_name; ?>" /><br />
+  E-mail:<br /> <input type="text" name="email" value="<?php echo $email; ?>" /><br />
+  User Name:<br /> <input type="text" name="username" value="<?php echo $username; ?>" /><br />
   <br />
   <input type="submit" name="submit" value="Submit" />
 </form>
