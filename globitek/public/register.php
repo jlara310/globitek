@@ -33,12 +33,12 @@
     if (is_blank($_POST['email'])) {
       $errors[] = "E-mail cannot be blank.";
     } elseif (!has_length($_POST['email'], ['min' => 2, 'max' => 255])) {
-      $errors[] = "E-mail must be between 2 and 30 characters.";
+      $errors[] = "E-mail must be between 2 and 255 characters.";
     }    
     //validate username
     if (is_blank($_POST['username'])) {
       $errors[] = "User Name cannot be blank.";
-    } elseif (!has_length($_POST['email'], ['min' => 2, 'max' => 255])) {
+    } elseif (!has_length($_POST['email'], ['min' => 2, 'max' => 30])) {
       $errors[] = "User Name must be between 2 and 30 characters.";
     } elseif (!has_valid_email_format($email)) {
       //check for valid email address
