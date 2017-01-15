@@ -60,11 +60,11 @@
       // Write SQL query statement
       $query = "SELECT * ";
       $query .= "FROM users ";
-      $query .= "WHERE username = '{$username}'";
+      $query .= "WHERE username = '{$username}';";
 
       $uniqueness_result = mysqli_query($db, $query);
 
-      if (mysqli_num_fields($uniqueness_result) != 0) {
+      if ($uniqueness_result->num_rows != 0) {
         $errors[] = "That user name is already taken.";
       }
 

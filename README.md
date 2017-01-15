@@ -6,21 +6,21 @@ Time spent: **3** hours spent in total
 
 The following **required** functionality is completed:
 
-1. [ ]  Create a Users Table
-2. [ ]  Create a Page with an HTML Form
-3. [ ]  Detect when the form is submitted.
-4. [ ]  Validate form data.
-5. [ ]  Display form errors if any validations fail.
-6. [ ]  Submit successfully-validated form values to the database.
-7. [ ]  Redirect the user to a confirmation page.
-8. [ ]  Sanitize all dynamic output for HTML.
+1. [X]  Create a Users Table
+2. [X]  Create a Page with an HTML Form
+3. [X]  Detect when the form is submitted.
+4. [X]  Validate form data.
+5. [X]  Display form errors if any validations fail.
+6. [X]  Submit successfully-validated form values to the database.
+7. [X]  Redirect the user to a confirmation page.
+8. [X]  Sanitize all dynamic output for HTML.
 
 
 The following advanced user stories are optional:
 
-* [ ]  Bonus: Validate that form values contain only whitelisted characters.
+* [X]  Bonus: Validate that form values contain only whitelisted characters.
 
-* [ ]  Bonus: Validate the uniqueness of the username.
+* [X]  Bonus: Validate the uniqueness of the username.
 
 ## Video Walkthrough
 
