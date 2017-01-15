@@ -21,28 +21,40 @@
       $errors[] = "First name cannot be blank.";
     } elseif (!has_length($_POST['first_name'], ['min' => 2, 'max' => 30])) {
       $errors[] = "First name must be between 2 and 30 characters.";
+    } elseif (!has_valid_characters($first_name, "/\A[A-Za-z\s\-,\.\']+\Z/")){
+      //Validate for whitelisted characters using regex
+      $errors[] = "First name can only include letters, spaces, \"-\", \",\", and \".\".";
     }
     //validate last_name
     if (is_blank($_POST['last_name'])) {
       $errors[] = "Last name cannot be blank.";
     } elseif (!has_length($_POST['last_name'], ['min' => 2, 'max' => 30])) {
       $errors[] = "Last name must be between 2 and 30 characters.";
+    } elseif (!has_valid_characters($last_name, "/\A[A-Za-z\s\-,\.\']+\Z/")){
+      //Validate for whitelisted characters using regex
+      $errors[] = "Last name can only include letters, spaces, \"-\", \",\", and \".\".";
     }
     //validate email
     if (is_blank($_POST['email'])) {
       $errors[] = "E-mail cannot be blank.";
     } elseif (!has_length($_POST['email'], ['min' => 2, 'max' => 255])) {
       $errors[] = "E-mail must be between 2 and 255 characters.";
+    } elseif (!has_valid_email_format($email)) {
+      $errors[] = "Please provide a valid E-mail address.";
+
+    }elseif (!has_valid_characters($email, "/\A[A-Za-z0-9\_\@']+\Z/")){
+      //Validate for whitelisted characters using regex
+      $errors[] = "E-mail can only include letters, numbers, \"_\", and \"@\" .";
     }    
     //validate username
     if (is_blank($_POST['username'])) {
-      $errors[] = "User Name cannot be blank.";
+      $errors[] = "User name cannot be blank.";
     } elseif (!has_length($_POST['email'], ['min' => 2, 'max' => 30])) {
-      $errors[] = "User Name must be between 2 and 30 characters.";
-    } elseif (!has_valid_email_format($email)) {
-      //check for valid email address
-      $errors[] = "Please provide a valid e-mail address.";
-    }
+      $errors[] = "User name must be between 2 and 30 characters.";
+    }  elseif (!has_valid_characters($username, "/\A[A-Za-z0-9\_']+\Z/")){
+      //Validate for whitelisted characters using regex
+      $errors[] = "User name can only include letters, numbers, and \"_\".";
+    }  
 
     
 
