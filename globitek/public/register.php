@@ -54,7 +54,21 @@
     }  elseif (!has_valid_characters($username, "/\A[A-Za-z0-9\_']+\Z/")){
       //Validate for whitelisted characters using regex
       $errors[] = "User name can only include letters, numbers, and \"_\".";
-    }  
+    }  else {
+      //Validate uniqueness of user name
+      $username = db_escape($db, $username);
+      // Write SQL query statement
+      $query = "SELECT * ";
+      $query .= "FROM users ";
+      $query .= "WHERE username = '{$username}'";
+
+      $uniqueness_result = mysqli_query($db, $query);
+
+      if (mysqli_num_fields($uniqueness_result) != 0) {
+        $errors[] = "That user name is already taken.";
+      }
+
+    }
 
     
 
